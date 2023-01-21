@@ -1,0 +1,43 @@
+List all the Editors
+SELECT * FROM user INNER JOIN role WHERE title='editor'
+
+Count All the Commentators
+SELECT COUNT(user_id) FROM user INNER JOIN role WHERE title='commentator'
+
+List all the gmail users
+SELECT * FROM user  WHERE email LIKE '%gmail.com'
+
+List all the users  who have more than two phones
+SELECT * FROM user INNER JOIN phoneno ON user.user_id=phoneno.id WHERE user.phone!=phoneno.phone
+
+List all the  Users of  Ufone
+SELECT * FROM user INNER JOIN phoneno ON user.user_id=phoneno.id WHERE phoneno.serviceprovider='ufone'
+
+List all those users who have more than 10 followers
+SELECT * FROM user WHERE 10<(SELECT COUNT(*) FROM follower WHERE id=user.user_id AND f_id IS NOT null)
+
+List all those users who are not followed by any one
+SELECT * FROM user INNER JOIN follower ON user.user_id=follower.id   WHERE f_id IS NULL
+ 
+List all those users  who follow less than 5(let say k) users  but they are followed by 50( let say m ) users
+
+* List all those users with order of their followship based on the count of their  first and second degree followers
+SELECT * FROM user INNER JOIN follower ON user.user_id=follower.id ORDER BY (user_id)
+
+Write a query to check whether a user exist in the Login System
+SELECT * FROM user WHERE username='Florence'
+
+Write a query to check if the password is correct or not 
+SELECT * FROM user WHERE username='Edy' AND PASSWORD='ABgLra3xSq' 
+
+Name a person who has most sons
+
+Name a person who has most children
+
+Name  persons who are widowed or divorced  such that females are above 30 and men are above 40
+
+All those projects whose budget is between   $ and $$
+SELECT * FROM project WHERE budget>0 AND budget<99
+
+Total Number of Employees who work in a project with a title of 'abc'
+SELECT * FROM project INNER JOIN user ON project.projectno=user.p_id  WHERE projectTitle='abc'
